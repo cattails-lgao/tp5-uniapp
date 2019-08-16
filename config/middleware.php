@@ -16,5 +16,6 @@ return [
     // 默认中间件命名空间
     'ApiUserAuth' => app\http\middleware\ApiUserAuth::class,
     'ApiUserBindPhone' => app\http\middleware\ApiUserBindPhone::class,
-    'ApiUserStatus' => app\http\middleware\ApiUserStatus::class
+    'ApiUserStatus' => app\http\middleware\ApiUserStatus::class,
+    'ApiGetUserid' => app\http\middleware\ApiGetUserid::class
 ];

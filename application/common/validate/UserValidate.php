@@ -22,6 +22,21 @@ class UserValidate extends BaseValidate
         'nickName' => 'require',
         'avatarUrl' => 'require', // 头像
         'expires_in' => 'require', // 有效期
+        'id'=>'require|integer|>:0',
+        'page'=>'require|integer|>:0',
+        'email'=>'require|email',
+        'userpic'=>'image',
+        'name'=>'require|chsDash',
+        'sex'=>'require|in:0,1,2',
+        'qg'=>'require|in:0,1,2',
+        'job'=>'require|chsAlpha',
+        'birthday'=>'require|dateFormat:Y-m-d',
+        'path'=>'require|chsDash',
+        'oldpassword'=>'require',
+        'newpassword'=>'require|alphaDash',
+        'renewpassword'=>'require|confirm:newpassword',
+        'follow_id'=>'require|integer|>:0|isUserExist',
+        
     ];
     
     /**
@@ -41,6 +56,19 @@ class UserValidate extends BaseValidate
         'sendCode' => ['phone'],
         'phonelogin' => ['phone','code'],
         'login' => ['username', 'password'],
-        'otherlogin' => ['provider','openid','nickName','avatarUrl','expires_in']
+        'otherlogin' => ['provider','openid','nickName','avatarUrl','expires_in'],
+        'post'=>['id','page'],
+        'allpost'=>['page'],
+        'bindphone'=>['phone','code'],
+        'bindemail'=>['email'],
+        'bindother'=>['provider','openid','nickName','avatarUrl'],
+        'edituserpic'=>['userpic'],
+        'edituserinfo'=>['name','sex','qg','job','birthday','path'],
+        'repassword'=>['oldpassword','newpassword','renewpassword'],
+        'follow'=>['follow_id'],
+        'unfollow'=>['follow_id'],
+        'getfriends'=>['page'],
+        'getfens'=>['page'],
+        'getfollows'=>['page'],
     ];
 }

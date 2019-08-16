@@ -48,4 +48,9 @@ class Image extends Model
             'user_id'=>$userid
         ]);
     }
+
+    // 图片是否存在
+    public function isImageExist($id,$userid){
+        return $this->where('user_id',$userid)->field('id')->find($id);
+    }
 }
