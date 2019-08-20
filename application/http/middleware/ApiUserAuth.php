@@ -1,26 +1,29 @@
 <?php
 
 namespace app\http\middleware;
-use think\facade\Cache;
 
 class ApiUserAuth
 {
-    public function handle($request, \Closure $next) {
-        $param = $request -> header();
-        // halt($param);
-        // 不含头部信息
-        if (!array_key_exists('token', $param)) \TApiException('非法token，禁止操作',20003,200);
-        // 当前用户的 token 是否存在
+    public function handle($request, \Closure $next)
+    {
+        // 获取头部信息
+        $param = $request->header();
+        // 不含token
+        if (!array_key_exists('token',$param)) TApiException('非法token，禁止操作',20003,200); 
+        // 当前用户token是否存在（是否登录）
         $token = $param['token'];
-        $user = Cache::get($token);
+        $user = \Cache::get($token);
         // 验证失败（未登录或已过期）
-        if (!$user) \TApiException('非法TOKEN，请重新登录',20003,200);
-        // 将 token 和 userid 这类常用参数放在 request 中
-        $request -> userToken = $token;
-        // 判断是否第三方登录
-
-        $request -> userid = array_key_exists('type', $user) ? $user['user_id'] : $user['id'];
-        $request -> userTokenUserInfo = $user;
+        if(!$user) TApiException('非法token，请重新登录',20003,200);
+        // 将token和userid这类常用参数放在request中
+        $request->userToken = $token;
+        // 判断第三方登录还是其他登录
+        if(array_key_exists('type',$user)){
+           $request->userid = array_key_exists('user_id',$user) ? $user['user_id'] : 0;
+        }else{
+          $request->userid = $user['id'];
+        }
+        $request->userTokenUserInfo = $user; 
         return $next($request);
     }
 }

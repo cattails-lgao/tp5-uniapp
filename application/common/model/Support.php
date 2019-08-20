@@ -6,13 +6,12 @@ use think\Model;
 
 class Support extends Model
 {
-    // 自动写入时间
+    // 自动写入时间戳
     protected $autoWriteTimestamp = true;
-    
+
     // 用户顶踩文章
     public function UserSupportPost(){
         $param = request()->param();
-
         // 获得用户id
         $userid = request()->userid;
         // 判断是否已经顶踩过

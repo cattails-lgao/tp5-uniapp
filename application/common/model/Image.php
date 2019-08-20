@@ -8,16 +8,26 @@ class Image extends Model
 {
     // 自动写入时间
     protected $autoWriteTimestamp = true;
+
     // 上传多图
     public function uploadMore(){
         $image = $this->upload(request()->userid,'imglist');
-        $imageCount = count($image);
-        for ($i=0; $i < $imageCount; $i++) { 
+        for ($i=0; $i < count($image); $i++) { 
             $image[$i]['url'] = getFileUrl($image[$i]['url']);
         }
         return $image;
     }
 
+  
+  public function getUrlAttr($value){
+        if (strpos($value,'http') === false) {
+            // 不包含
+            $value = getFileUrl($value);
+        }
+        return $value;
+    }
+  
+  
     // 上传图片
     public function upload($userid = '',$field = ''){
         // 获取图片
@@ -51,6 +61,7 @@ class Image extends Model
 
     // 图片是否存在
     public function isImageExist($id,$userid){
-        return $this->where('user_id',$userid)->field('id')->find($id);
+        return $this->where('user_id',$userid)->find($id);
     }
+
 }

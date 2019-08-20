@@ -4,15 +4,15 @@ namespace app\api\controller\v1;
 
 use think\Controller;
 use think\Request;
-use app\common\model\Topic as TopicModel;
 use app\common\controller\BaseController;
+use app\common\model\Topic as TopicModel;
 use app\common\validate\TopicClassValidate;
-
 class Topic extends BaseController
 {
+    // 获取10个话题
     public function index()
     {
-        $list = (new TopicModel()) -> gethotlist();
+        $list = (new TopicModel())->gethotlist();
         return self::showResCode('获取成功',['list'=>$list]);
     }
 

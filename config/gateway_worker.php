@@ -17,7 +17,15 @@ return [
     'host'                  => '0.0.0.0', // 监听地址
     'port'                  => 23481, // 监听端口
     'socket'                => '', // 完整监听地址
-    'context'               => [], // socket 上下文选项
+    'context'               =>  [
+    	'ssl' => [
+        // 请使用绝对路径
+       		 'local_cert'                 => '/www/server/panel/vhost/ssl/api.yuchentt.com/fullchain.pem', // 也可以是crt文件
+       		 'local_pk'                   => '/www/server/panel/vhost/ssl/api.yuchentt.com/privkey.pem',
+       		 'verify_peer'               => false,
+    	]
+    ], 
+    // socket 上下文选项
     'register_deploy'       => true, // 是否需要部署register
     'businessWorker_deploy' => true, // 是否需要部署businessWorker
     'gateway_deploy'        => true, // 是否需要部署gateway
@@ -39,7 +47,7 @@ return [
     'businessWorker'        => [
         'name'         => 'BusinessWorker',
         'count'        => 1,
-        'eventHandler' => 'app\lib\socket\Events',
+        'eventHandler' => '\app\lib\socket\Events',
     ],
 
 ];

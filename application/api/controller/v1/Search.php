@@ -6,6 +6,7 @@ use think\Controller;
 use think\Request;
 use app\common\controller\BaseController;
 use app\common\validate\SearchValidate;
+
 use app\common\model\Topic as TopicModel;
 use app\common\model\Post as PostModel;
 use app\common\model\User as UserModel;

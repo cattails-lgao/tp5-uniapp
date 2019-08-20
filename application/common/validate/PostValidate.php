@@ -15,10 +15,11 @@ class PostValidate extends BaseValidate
 	protected $rule = [
         'id'=>'require|integer|>:0',
         'text'=>'require',
-        'imglist'=>'require|array',
+        'imglist'=>'require',
         'isopen'=>'require|in:0,1',
         'topic_id'=>'require|integer|>:0|isTopicExist',
         'post_class_id'=>'require|integer|>:0|isPostClassExist',
+        'page'=>'require|integer|>:0'
     ];
     
     /**
@@ -31,6 +32,7 @@ class PostValidate extends BaseValidate
 
     protected $scene = [
         'create'=>['text','imglist','token','isopen','topic_id','post_class_id'],
-        'detail'=>['id']
+        'detail'=>['id'],
+       'list'=>['page']
     ];
 }

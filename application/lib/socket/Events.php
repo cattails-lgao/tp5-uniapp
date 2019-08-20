@@ -36,12 +36,14 @@ class Events
      */
     public static function onMessage($client_id, $data)
     {
+        // $data='{ token:"5fe5a0d48aea3c07846eaa5cca984f09336d65e8",type:"bind"}';
         //var_export($data);
         // 验证当前客户端是否已经绑定
         if (Gateway::getUidByClientId($client_id)) return;
         $data = json_decode($data,true);
         // 非法参数
         if (!is_array($data) || !array_key_exists('type',$data) || !array_key_exists('token',$data) || $data['type'] !== 'bind' || empty($data['token'])) return;
+        // 验证token合法性
         $user = Cache::get($data['token']);
         if (!$user) return Gateway::sendToCurrentClient(json_encode(['type'=>'bind','msg'=>'非法token，禁止操作','status'=>false]));
         // 获取用户id

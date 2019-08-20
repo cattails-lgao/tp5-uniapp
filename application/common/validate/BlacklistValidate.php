@@ -13,7 +13,7 @@ class BlacklistValidate extends BaseValidate
      * @var array
      */	
 	protected $rule = [
-        'id'=>'require|integer|>:0|isUserExist',
+        'id'=>'require|integer|>:0|isUserExist'
     ];
     
     /**

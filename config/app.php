@@ -15,7 +15,7 @@
 
 return [
     // 应用名称
-    'app_name'               => '防糗事百科',
+    'app_name'               => '仿糗事百科',
     // 应用地址
     'app_host'               => 'http://api.qiushi.com',
     // 应用调试模式

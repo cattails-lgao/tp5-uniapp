@@ -6,14 +6,17 @@ use think\Model;
 
 class Comment extends Model
 {
+    // 自动写入时间戳
+    protected $autoWriteTimestamp = true;
+
     // 关联用户
     public function user(){
         return $this->belongsTo('User','user_id');
     }
+
     // 评论
     public function comment(){
         $params = request()->param();
-        
         // 获得当前用户id
         $userid = request()->userid;
         $comment = $this->create([
@@ -22,7 +25,6 @@ class Comment extends Model
             'fid'=>$params['fid'],
             'data'=>$params['data']
         ]);
-        // halt($comment);
         // 评论成功
         if ($comment) {
             if ($params['fid']>0) {
@@ -30,7 +32,7 @@ class Comment extends Model
                 $fcomment->fnum = ['inc', 1];
                 $fcomment -> save();
             }
-            return true;
+            return $comment;
         }
         TApiException('评论失败');
     }

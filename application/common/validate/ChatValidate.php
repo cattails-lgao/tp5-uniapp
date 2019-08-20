@@ -12,12 +12,12 @@ class ChatValidate extends BaseValidate
      *
      * @var array
      */	
-	protected $rule = [
+    protected $rule = [
         'to_id'=>'require|isUserExist',
         'from_userpic'=>'require',
         'type'=>'require',
         'data'=>'require',
-        'client_id'=>'require'
+     	 'client_id'=>'require'
     ];
     
     /**
@@ -30,6 +30,6 @@ class ChatValidate extends BaseValidate
 
     protected $scene = [
         'send'=>['to_id','from_userpic','type','data'],
-        'bind'=>['type','client_id']
+      	'bind'=>['type','client_id']
     ];
 }

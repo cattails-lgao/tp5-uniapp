@@ -4,9 +4,9 @@ namespace app\api\controller\v1;
 
 use think\Controller;
 use think\Request;
+use app\common\controller\BaseController;
 use app\common\validate\AdsenseValidate;
 use app\common\model\Adsense as AdsenseModel;
-use app\common\controller\BaseController;
 
 class Adsense extends BaseController
 {

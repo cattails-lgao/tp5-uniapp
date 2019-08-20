@@ -14,7 +14,7 @@ class CommentValidate extends BaseValidate
      */	
 	protected $rule = [
         'fid'=>'require|integer|>:-1|isCommentExist',
-        'data'=>'require|print',
+        'data'=>'require',
         'post_id'=>'require|integer|>:0|isPostExist',
     ];
     

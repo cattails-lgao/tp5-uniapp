@@ -6,6 +6,7 @@ use think\Model;
 
 class Feedback extends Model
 {
+    // 自动写入时间
     protected $autoWriteTimestamp = true;
 
     // 用户反馈
@@ -24,6 +25,6 @@ class Feedback extends Model
     public function feedbacklist(){
         $page = request()->param('page');
         $user_id = request()->userid;
-        return $this -> where('from_id',$user_id)->whereOr('to_id',$user_id)->page($page,10)->select();
+        return $this -> where('from_id',$user_id)->whereOr('to_id',$user_id)->page($page,10)->order('create_time','desc')->select();
     }
 }

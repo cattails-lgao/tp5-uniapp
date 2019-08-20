@@ -3,7 +3,6 @@
 namespace app\common\validate;
 
 use think\Validate;
-use app\common\validate\BaseValidate;
 
 class SupportValidate extends BaseValidate
 {
